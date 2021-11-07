@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { createContext } from "react";
+import FadeIn from "./Components/FadeIn";
+import Header from "./Components/Header";
+import { useDarkMode } from "./hooks/useDarkMode";
+import DarkModeToggle from "./Components/DarkModeToggle";
+import { GlobalStyle } from "./global-style";
+import { darkTheme, lightTheme, Theme } from "./theme";
+import Main from "./Components/Main";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface ContextProps {
+    theme: Theme;
+    toggleTheme: () => void;
 }
 
-export default App;
+export const ThemeContext = createContext<ContextProps>({
+    theme: lightTheme,
+    toggleTheme: () => {
+        return null;
+    }
+})
+
+export default function App() {
+    const { theme, toggleTheme } = useDarkMode();
+
+    return (
+        <ThemeContext.Provider value={{ theme, toggleTheme }}>
+            <>
+                <GlobalStyle theme={theme === lightTheme ? lightTheme : darkTheme} />
+                <DarkModeToggle />
+                <Header />
+                <Main />
+            </>
+        </ThemeContext.Provider>
+    )
+}
