@@ -3,7 +3,7 @@ export const lightTheme = {
     text: '#363537',
     toggleBackground: '#fcfcfc',
     mainColor: '#e6328d',
-    navBar: '#fcfcfc',
+    navBar: '#f7f7f7',
 };
   
 export const darkTheme = {
@@ -11,7 +11,7 @@ export const darkTheme = {
     text: '#fcfcfc',
     toggleBackground: '#3b3b3b',
     mainColor: '#fcfcfc',
-    navBar: '#303030',
+    navBar: '#202020',
 };
   
 export type Theme = typeof lightTheme;
