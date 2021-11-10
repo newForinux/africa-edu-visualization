@@ -1,10 +1,28 @@
 import { useContext } from "react";
 import styled from "styled-components"
 import { ThemeContext } from "../App";
-import { lightTheme } from "../theme";
 import sampleImg from "../images/sample.jpg";
+import { lightTheme } from "../theme";
 import "./Main.scss";
 
+
+const AuthorWrapper = styled.div`
+    line-height: calc(1em + 0.25rem);
+    margin-bottom: 0.5rem;
+`
+
+const AuthorLink = styled.div`
+    transition: none;
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+    font-size: 1rem;
+    line-height: calc(1em + 0.25rem);
+    font-weight: 600;
+    color: #FF585D;
+    display: inline-block;
+    vertical-align: top;
+`
 
 const MainHeader = styled.header`
     display: flex;
@@ -53,12 +71,28 @@ const ImageWrapper = styled.span`
 export default function Main() {
     const { theme } = useContext(ThemeContext);
 
+    const Caption = styled.figcaption`
+        font-family: 'Steradian', system-ui, sans-serif;
+        margin-top: 1.25rem;
+        color: ${theme === lightTheme ? '#96A0A6' : '#C8C8C8'};
+        max-width: 42.5rem;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 1rem;
+        line-height:  calc(1em + 0.5rem);
+    `
+
     return (
         <>
             <article>
                 <MainHeader>
+                    <AuthorWrapper>
+                        <AuthorLink>
+                            sample : &nbsp; Visualization
+                        </AuthorLink>
+                    </AuthorWrapper>
                     <MainTitle>
-                        Africa Education Analysis:
+                        Africa Education Analysis: From a Socio-Economical Perspectives.
                     </MainTitle>
                     <SubTitle>
                         In the perspective of Socio-Economical Perspectives.
@@ -74,7 +108,7 @@ export default function Main() {
                                         display: "block",
                                         marginLeft: "auto",
                                         marginRight: "auto",
-                                        maxWidth: "1280px",
+                                        maxWidth: "800px",
                                     }}>
                                     <a className="md-figure-link" href={sampleImg} rel="noopener" style={{ display: "block" }}>
                                         <img alt="banner"
@@ -92,6 +126,9 @@ export default function Main() {
                                         />
                                     </a>
                                 </span>
+                                <Caption>
+                                    The result of PCA which labels centroids.
+                                </Caption>
                             </figure>
                         </div>
                     </div>
