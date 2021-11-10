@@ -2,6 +2,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 import { ThemeContext } from "../App";
 import { lightTheme } from "../theme";
+import Logo from "./Logo";
 
 const Container = styled.div`
     display: grid;
@@ -93,6 +94,11 @@ const HamButtonSvg = styled.svg`
     backface-visibility: hidden;
 `
 
+const GridLogoSvg = styled.svg`
+    height: 6rem;
+    color: inherit;
+`;
+
 const GridLogoLink = styled.a`
     transition: none;
     cursor: pointer;
@@ -101,11 +107,6 @@ const GridLogoLink = styled.a`
     display: inline-block;
     vertical-align: middle;
     color: #051C2C;
-`;
-
-const GridLogoSvg = styled.svg`
-    height: 4rem;
-    color: inherit;
 `;
 
 const GridMenu = styled.div`
@@ -135,7 +136,7 @@ export default function Header() {
         outline: none;
         font-size: 1.3rem;
         line-height: calc(1em + 0.25rem);
-        font-weight: 700;
+        font-weight: 600;
         letter-spacing: -0.025rem;
         color: ${theme === lightTheme ? '#585858' : '#FFFFFF'};
         display: inline-block;
@@ -148,10 +149,11 @@ export default function Header() {
             <Container>
                 <GridLogo>
                     <GridLogoLink href="/">
-                        <GridLogoSvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 440">
-                            <g fill={theme === lightTheme ? 'black' : 'white'} fillRule="evenodd" stroke="none">
-                                <path fillRule="nonzero" d="M348.8 289.261L400 289.261 400 440 0 440 0 0 399.361 0 399.361 148.372 348.161 148.372 348.161 51.1628 51.2001 51.1628 51.2001 388.837 348.8 388.837z" />
-                                <path d="M107.93 168.426L107.93 113.989 288.974 113.989 288.974 162.696 185.754 278.119 289.793 278.119 289.793 332.557 104.653 332.557 104.653 283.031 206.644 168.426z" />
+                        <GridLogoSvg viewBox="0 0 508 491"
+                            preserveAspectRatio="xMidYMid meet">
+                            <g transform="translate(0.000000,491.000000) scale(0.100000,-0.100000)"
+                                fill={theme === lightTheme ? 'black' : 'white'} stroke="none">
+                                <Logo />
                             </g>
                         </GridLogoSvg>
                     </GridLogoLink>
