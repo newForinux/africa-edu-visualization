@@ -6,6 +6,7 @@ import DarkModeToggle from "./Components/DarkModeToggle";
 import { GlobalStyle } from "./global-style";
 import { darkTheme, lightTheme, Theme } from "./theme";
 import Main from "./Components/Main";
+import Footer from "./Components/Footer";
 
 interface ContextProps {
     theme: Theme;
@@ -28,7 +29,10 @@ export default function App() {
                 <GlobalStyle theme={theme === lightTheme ? lightTheme : darkTheme} />
                 <DarkModeToggle />
                 <Header />
-                <Main />
+                <FadeIn delay={300}>
+                    <Main />
+                </FadeIn>
+                <Footer />
             </>
         </ThemeContext.Provider>
     )
