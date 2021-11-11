@@ -145,54 +145,53 @@ export default function Header() {
     `
 
     return (
-        <>
-            <Container>
-                <GridLogo>
-                    <GridLogoLink href="/">
-                        <GridLogoSvg viewBox="0 0 508 491"
-                            preserveAspectRatio="xMidYMid meet">
-                            <g transform="translate(0.000000,491.000000) scale(0.100000,-0.100000)"
-                                fill={theme === lightTheme ? 'black' : 'white'} stroke="none">
-                                <Logo />
-                            </g>
-                        </GridLogoSvg>
-                    </GridLogoLink>
-                </GridLogo>
-                <HamBar>
-                    <HamButton type="button" name="menu">
-                        <HamButtonSvg viewBox="0 0 48 48" focusable="false" role="presentation">
-                            <g fill={theme === lightTheme ? 'black' : 'white'}>
-                                <path d="M8 10H40V13H8z" />
-                                <path d="M8 22H40V25H8z" />
-                                <path d="M8 35H40V38H8z" />
-                            </g>
-                        </HamButtonSvg>
-                    </HamButton>
-                </HamBar>
-                <GridMenu>
-                    <GridMenuLink href="/">
-                        <GridMenuSpan>
-                            Data
-                        </GridMenuSpan>
-                    </GridMenuLink>
-                </GridMenu>
-                <GridMenu>
-                    <GridMenuLink href="/">
-                        <GridMenuSpan>
-                            Direction
-                        </GridMenuSpan>
 
-                    </GridMenuLink>
-                </GridMenu>
-                <GridMenu>
-                    <GridMenuLink href="/">
-                        <GridMenuSpan>
-                            Contribute
-                        </GridMenuSpan>
-                    </GridMenuLink>
-                </GridMenu>
-            </Container>
-        </>
+        <Container>
+            <GridLogo>
+                <GridLogoLink href="/">
+                    <GridLogoSvg viewBox="0 0 508 491"
+                        preserveAspectRatio="xMidYMid meet">
+                        <g transform="translate(0.000000,491.000000) scale(0.100000,-0.100000)"
+                            fill={theme === lightTheme ? 'black' : 'white'} stroke="none">
+                            <Logo />
+                        </g>
+                    </GridLogoSvg>
+                </GridLogoLink>
+            </GridLogo>
+            <HamBar>
+                <HamButton type="button" name="menu">
+                    <HamButtonSvg viewBox="0 0 48 48" focusable="false" role="presentation">
+                        <g fill={theme === lightTheme ? 'black' : 'white'}>
+                            <path d="M8 10H40V13H8z" />
+                            <path d="M8 22H40V25H8z" />
+                            <path d="M8 35H40V38H8z" />
+                        </g>
+                    </HamButtonSvg>
+                </HamButton>
+            </HamBar>
+            <GridMenu>
+                <GridMenuLink href="/data">
+                    <GridMenuSpan>
+                        Data
+                    </GridMenuSpan>
+                </GridMenuLink>
+            </GridMenu>
+            <GridMenu>
+                <GridMenuLink href="/direction">
+                    <GridMenuSpan>
+                        Direction
+                    </GridMenuSpan>
+
+                </GridMenuLink>
+            </GridMenu>
+            <GridMenu>
+                <GridMenuLink href="/contribute">
+                    <GridMenuSpan>
+                        Contribute
+                    </GridMenuSpan>
+                </GridMenuLink>
+            </GridMenu>
+        </Container>
     )
 
 }
