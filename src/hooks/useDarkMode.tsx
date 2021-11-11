@@ -12,16 +12,26 @@ export const useDarkMode = () => {
     }
 
     const toggleTheme = () => {
-        theme === lightTheme ? setMode(darkTheme) : setMode(lightTheme);
+        if (theme === lightTheme) {
+            document.body.className = "dark";
+            setMode(darkTheme);
+        } else {
+            document.body.className = "light";
+            setMode(lightTheme);
+        }
+
+        //theme === lightTheme ? {setMode(darkTheme)} : setMode(lightTheme);
     };
 
     useEffect(() => {
         const localTheme = window.localStorage.getItem('theme');
         if (localTheme !== null) {
-            if (localTheme === 'dark')
+            if (localTheme === 'dark') {
                 setTheme(darkTheme);
-            else
+            }
+            else {
                 setTheme(lightTheme);
+            }
         }
     }, []);
 
