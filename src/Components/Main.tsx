@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { ThemeContext } from "../App";
 import sampleImg from "../images/sample.jpg";
 import { lightTheme } from "../theme";
+import FadeIn from "./FadeIn";
 import "./Main.scss";
 
 
@@ -83,8 +84,8 @@ export default function Main() {
     `
 
     return (
-        <>
-            <article>
+        <FadeIn delay={300}>
+            <article >
                 <MainHeader>
                     <AuthorWrapper>
                         <AuthorLink>
@@ -134,6 +135,6 @@ export default function Main() {
                     </div>
                 </div>
             </article>
-        </>
+        </FadeIn>
     )
 }
