@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
-import { ThemeContext } from "../App";
+import { CurrentThemeProps, ThemeContext } from "../App";
 import { lightTheme } from "../theme";
 import Logo from "./Logo";
+import NavBar from "./NavBar";
 
 const Container = styled.div`
     display: grid;
@@ -95,7 +96,7 @@ const HamButtonSvg = styled.svg`
 `
 
 const GridLogoSvg = styled.svg`
-    height: 6rem;
+    height: 5.5rem;
     color: inherit;
 `;
 
@@ -126,72 +127,86 @@ const GridMenuSpan = styled.span`
     vertical-align: middle;
 `
 
+const GridMenuLink = styled.a<CurrentThemeProps>`
+    transition: none;
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+    font-size: 1.3rem;
+    line-height: calc(1em + 0.25rem);
+    font-weight: 600;
+    letter-spacing: -0.025rem;
+    color: ${({ currentTheme }) => currentTheme === lightTheme ? '#585858' : '#FFFFFF'}};
+    display: inline - block;
+    overflow: hidden;
+    vertical - align: middle;
+`
+
+
 export default function Header() {
     const { theme } = useContext(ThemeContext);
+    const [navOpen, setNavOpen] = useState(false);
 
-    const GridMenuLink = styled.a`
-        transition: none;
-        cursor: pointer;
-        text-decoration: none;
-        outline: none;
-        font-size: 1.3rem;
-        line-height: calc(1em + 0.25rem);
-        font-weight: 600;
-        letter-spacing: -0.025rem;
-        color: ${theme === lightTheme ? '#585858' : '#FFFFFF'};
-        display: inline-block;
-        overflow: hidden;
-        vertical-align: middle;
-    `
+    const handleNavOpen = () => {
+        setNavOpen(true);
+    }
+
+    const handleNavClose = () => {
+        setNavOpen(false);
+    }
+
+
 
     return (
+        <>
+            <Container>
+                <GridLogo>
+                    <GridLogoLink href="/">
+                        <GridLogoSvg viewBox="0 0 508 491"
+                            preserveAspectRatio="xMidYMid meet">
+                            <g transform="translate(0.000000,491.000000) scale(0.100000,-0.100000)"
+                                fill={theme === lightTheme ? 'black' : 'white'} stroke="none">
+                                <Logo />
+                            </g>
+                        </GridLogoSvg>
+                    </GridLogoLink>
+                </GridLogo>
+                <HamBar>
+                    <HamButton type="button" name="menu" onClick={handleNavOpen}>
+                        <HamButtonSvg viewBox="0 0 48 48" focusable="false" role="presentation">
+                            <g fill={theme === lightTheme ? 'black' : 'white'}>
+                                <path d="M8 10H40V13H8z" />
+                                <path d="M8 22H40V25H8z" />
+                                <path d="M8 35H40V38H8z" />
+                            </g>
+                        </HamButtonSvg>
+                    </HamButton>
+                </HamBar>
+                <GridMenu>
+                    <GridMenuLink currentTheme={theme} href="/data">
+                        <GridMenuSpan>
+                            Data
+                        </GridMenuSpan>
+                    </GridMenuLink>
+                </GridMenu>
+                <GridMenu>
+                    <GridMenuLink currentTheme={theme} href="/direction">
+                        <GridMenuSpan>
+                            Direction
+                        </GridMenuSpan>
 
-        <Container>
-            <GridLogo>
-                <GridLogoLink href="/">
-                    <GridLogoSvg viewBox="0 0 508 491"
-                        preserveAspectRatio="xMidYMid meet">
-                        <g transform="translate(0.000000,491.000000) scale(0.100000,-0.100000)"
-                            fill={theme === lightTheme ? 'black' : 'white'} stroke="none">
-                            <Logo />
-                        </g>
-                    </GridLogoSvg>
-                </GridLogoLink>
-            </GridLogo>
-            <HamBar>
-                <HamButton type="button" name="menu">
-                    <HamButtonSvg viewBox="0 0 48 48" focusable="false" role="presentation">
-                        <g fill={theme === lightTheme ? 'black' : 'white'}>
-                            <path d="M8 10H40V13H8z" />
-                            <path d="M8 22H40V25H8z" />
-                            <path d="M8 35H40V38H8z" />
-                        </g>
-                    </HamButtonSvg>
-                </HamButton>
-            </HamBar>
-            <GridMenu>
-                <GridMenuLink href="/data">
-                    <GridMenuSpan>
-                        Data
-                    </GridMenuSpan>
-                </GridMenuLink>
-            </GridMenu>
-            <GridMenu>
-                <GridMenuLink href="/direction">
-                    <GridMenuSpan>
-                        Direction
-                    </GridMenuSpan>
-
-                </GridMenuLink>
-            </GridMenu>
-            <GridMenu>
-                <GridMenuLink href="/contribute">
-                    <GridMenuSpan>
-                        Contribute
-                    </GridMenuSpan>
-                </GridMenuLink>
-            </GridMenu>
-        </Container>
+                    </GridMenuLink>
+                </GridMenu>
+                <GridMenu>
+                    <GridMenuLink currentTheme={theme} href="/contribute">
+                        <GridMenuSpan>
+                            Contribute
+                        </GridMenuSpan>
+                    </GridMenuLink>
+                </GridMenu>
+            </Container>
+            <NavBar visible={navOpen} onClose={handleNavClose} />
+        </>
     )
 
 }

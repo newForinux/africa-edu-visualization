@@ -8,6 +8,10 @@ import Main from "./Components/Main";
 import Footer from "./Components/Footer";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+export interface CurrentThemeProps {
+    currentTheme: Theme;
+}
+
 interface ContextProps {
     theme: Theme;
     toggleTheme: () => void;

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import styled from "styled-components"
-import { ThemeContext } from "../App";
+import { CurrentThemeProps, ThemeContext } from "../App";
 import sampleImg from "../images/sample.jpg";
 import { lightTheme } from "../theme";
 import FadeIn from "./FadeIn";
@@ -43,45 +43,43 @@ const MainHeader = styled.header`
 `
 
 const MainTitle = styled.h1`
-    font-size: 3rem;
+    font-size: 2.2rem;
     line-height: calc(1em + 0.25rem);
     font-weight: 700;
     font-family: 'Steradian', system-ui, sans-serif;
     letter-spacing: -0.025rem;
     margin-bottom: 2.5rem;
+
+    @media screen and (min-width: 48em) {
+        font-size: 3rem;
+    }
 `
 
 const SubTitle = styled.p`
     font-family: 'Steradian', system-ui, sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     line-height: calc(1em + 0.75rem);
     letter-spacing: -0.0125em;
     margin-bottom: 2.5rem;
+
+    @media screen and (min-width: 48em) {
+        font-size: 1.5rem;
+    }
 `
 
-
-const ImageWrapper = styled.span`
-    grid-column: 1 / -1;
-    position: relative;
-    display: block;
+const Caption = styled.figcaption<CurrentThemeProps>`
+    font-family: 'Steradian', system-ui, sans-serif;
+    margin-top: 1.25rem;
+    color: ${({ currentTheme }) => currentTheme === lightTheme ? '#96A0A6' : '#C8C8C8'};
+    max-width: 42.5rem;
     margin-left: auto;
     margin-right: auto;
-    max-width: 1280px;
+    font-size: 1rem;
+    line-height:  calc(1em + 0.5rem);
 `
 
 export default function Main() {
     const { theme } = useContext(ThemeContext);
-
-    const Caption = styled.figcaption`
-        font-family: 'Steradian', system-ui, sans-serif;
-        margin-top: 1.25rem;
-        color: ${theme === lightTheme ? '#96A0A6' : '#C8C8C8'};
-        max-width: 42.5rem;
-        margin-left: auto;
-        margin-right: auto;
-        font-size: 1rem;
-        line-height:  calc(1em + 0.5rem);
-    `
 
     return (
         <FadeIn delay={300}>
@@ -89,7 +87,7 @@ export default function Main() {
                 <MainHeader>
                     <AuthorWrapper>
                         <AuthorLink>
-                            sample : &nbsp; Visualization
+                            sample&#8482; : visualization
                         </AuthorLink>
                     </AuthorWrapper>
                     <MainTitle>
@@ -127,7 +125,7 @@ export default function Main() {
                                         />
                                     </a>
                                 </span>
-                                <Caption>
+                                <Caption currentTheme={theme}>
                                     The result of PCA which labels centroids.
                                 </Caption>
                             </figure>

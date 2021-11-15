@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import styled from "styled-components"
-import { ThemeContext } from "../App";
+import { CurrentThemeProps, ThemeContext } from "../App";
 import { darkTheme, lightTheme } from "../theme";
 import Logo from "./Logo";
 
@@ -126,33 +126,34 @@ const FooterLink = styled.a`
     margin-bottom: 1.25rem;
 `
 
+const FooterCompParg = styled.p<CurrentThemeProps>`
+    font-family: Steradian, system-ui, sans-serif;
+    font-size: 1rem;
+    line-height: calc(1rem + 0.75rem);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    color: ${({ currentTheme }) => currentTheme === lightTheme ? "#626B73" : "#CFCFCF"};
+`
+
+const FooterCopyright = styled.div<CurrentThemeProps>`
+    font-family: Steradian, system-ui, sans-serif;
+    grid-column: 1 / -1;
+    margin: 0;
+    font-size: 1rem;
+    line-height: calc(1em + 0.5rem);
+    font-weight: 500;
+    letter-spacing: -0.025rem;
+    color: ${({ currentTheme }) => currentTheme === lightTheme ? "#3C4E5A" : "#EDEDED"};
+
+    @media screen and (min-width: 48em) {
+        margin: 0 auto;
+    }
+`
+
+
 export default function Footer() {
     const { theme } = useContext(ThemeContext);
     const bgColor = theme === lightTheme ? lightTheme.navBar : darkTheme.navBar;
-
-    const FooterCompParg = styled.p`
-        font-family: Steradian, system-ui, sans-serif;
-        font-size: 1rem;
-        line-height: calc(1rem + 0.75rem);
-        font-weight: 600;
-        letter-spacing: -0.025em;
-        color: ${theme === lightTheme ? "#626B73" : "#CFCFCF"};
-    `
-
-    const FooterCopyright = styled.div`
-        font-family: Steradian, system-ui, sans-serif;
-        grid-column: 1 / -1;
-        margin: 0;
-        font-size: 1rem;
-        line-height: calc(1em + 0.5rem);
-        font-weight: 500;
-        letter-spacing: -0.025rem;
-        color: ${theme === lightTheme ? "#3C4E5A" : "#EDEDED"};
-
-        @media screen and (min-width: 48em) {
-            margin: 0 auto;
-        }
-    `
 
     return (
         <div style={{ backgroundColor: bgColor }}>
@@ -168,7 +169,7 @@ export default function Footer() {
                         </FooterLogoSvg>
                     </FooterLogo>
                     <FooterCompDetail>
-                        <FooterCompParg>
+                        <FooterCompParg currentTheme={theme}>
                             sample : Society of Statistics
                             <br /><br />
                             Handong Global University Pohang Gyeongbuk 37554
@@ -205,7 +206,7 @@ export default function Footer() {
                         </FooterLink>
                     </FooterMenuWrapper>
                 </FooterDetail>
-                <FooterCopyright>
+                <FooterCopyright currentTheme={theme}>
                     © 2021 sample&#8482; &amp; minwoo
                 </FooterCopyright>
             </FooterContainer>
