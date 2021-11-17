@@ -83,7 +83,7 @@ export default function Main() {
 
     return (
         <FadeIn delay={300}>
-            <article >
+            <article>
                 <MainHeader>
                     <AuthorWrapper>
                         <AuthorLink>

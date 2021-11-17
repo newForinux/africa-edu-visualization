@@ -38,7 +38,7 @@ const Container = styled.div`
         padding-top: 4rem;
     }
 
-    @media screen and (min-width: 48em) {
+    @media screen and (min-width: 80em) {
         column-gap: 2.5rem;
     }
 `;
