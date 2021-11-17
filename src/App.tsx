@@ -7,6 +7,7 @@ import { darkTheme, lightTheme, Theme } from "./theme";
 import Main from "./Components/Main";
 import Footer from "./Components/Footer";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Data from "./Data/Data";
 
 export interface CurrentThemeProps {
     currentTheme: Theme;
@@ -36,7 +37,7 @@ export default function App() {
                     <Header />
                     <Routes>
                         <Route path="/" element={<Main />} />
-                        <Route path="/data" element={<Main />} />
+                        <Route path="/data" element={<Data />} />
                     </Routes>
                     <Footer />
                 </ThemeContext.Provider>
