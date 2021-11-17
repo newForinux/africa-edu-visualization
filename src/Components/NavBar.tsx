@@ -134,16 +134,18 @@ const NavWrapper = styled.nav`
     max-width: 90rem;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 6rem;
+    padding-top: 2rem;
 
     @media screen and (min-width: 30em) {
         padding-left: 2rem;
         padding-right: 2rem;
+        padding-top: 3rem;
     }
 
     @media screen and (min-width: 62em) {
         padding-left: 5rem;
         padding-right: 5rem;
+        padding-top: 5rem;
     }
 `
 
@@ -170,9 +172,17 @@ const NavMenuSpan = styled.span`
 
 const NavBottomWrapper = styled.div`
     position: absolute;
-    bottom: 5rem;
+    bottom: 1rem;
     left: 0;
     right: 0;
+
+    @media screen and (min-width: 30em) {
+        bottom: 3rem;
+    }
+
+    @media screen and (min-width: 62em) {
+        bottom: 5rem;
+    }
 `
 
 const NavBottoms = styled.div`
@@ -200,7 +210,7 @@ const NavBottomsLink = styled.a<CurrentThemeProps>`
     cursor: pointer;
     text-decoration: none;
     outline: none;
-    font-size: 1.25rem;
+    font-size: 1rem;
     line-height: calc(1em + 0.5rem);
     font-weight: 500;
     letter-spacing: -0.025em;
@@ -208,7 +218,7 @@ const NavBottomsLink = styled.a<CurrentThemeProps>`
     margin-right: 2.5rem;
 
     @media screen and (min-width: 48em) {
-        font-size: 1rem;
+        font-size: 1.25rem;
     }
 `
 
