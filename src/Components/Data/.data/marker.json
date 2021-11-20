@@ -1,0 +1,17 @@
+[
+    {"country": "Botswana", "latitude": -22.205387369047095, "longitude": 23.794918885716978},
+    {"country": "Kenya", "latitude": 0.5609327148675887, "longitude": 37.784743450855146},
+    {"country": "Lesotho", "latitude": -29.571859581456035, "longitude": 28.230607352891656},
+    {"country": "Malawi", "latitude": -13.495098036245086, "longitude": 34.21605195289139},
+    {"country": "Mauritius", "latitude": -20.130903778490442, "longitude": 57.6474876434221},
+    {"country": "Mozambique", "latitude": -17.266625672541974, "longitude": 35.46509080055498},   
+    {"country": "Namibia", "latitude": -22.010293209744077, "longitude": 17.16885212955262},   
+    {"country": "Seychelles", "latitude": -4.643507725877859, "longitude": 55.461668148327156},
+    {"country": "South Africa", "latitude": -30.36295341190466, "longitude": 24.014882626822665},
+    {"country": "Swaziland", "latitude": -26.55833831793198, "longitude": 31.52857002619087},
+    {"country": "Tanzania", "latitude": -6.440700957730904, "longitude": 34.735019422922704},
+    {"country": "Uganda", "latitude": 1.4659584698688337, "longitude": 32.377352334224014}, 
+    {"country": "Zambia", "latitude": -13.36588644200713, "longitude": 27.895542764179027},
+    {"country": "Zanzibar", "latitude": -6.150683494700297, "longitude": 39.373288197603856},
+    {"country": "Zimbabwe", "latitude": -18.939741522373474, "longitude": 29.919429657346846}
+]
