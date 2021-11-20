@@ -1,13 +1,14 @@
 import React, { createContext } from "react";
-import Header from "./Components/Header";
+import Header from "./Components/Header/Header";
 import { useDarkMode } from "./hooks/useDarkMode";
 import DarkModeToggle from "./Components/DarkModeToggle";
 import { GlobalStyle } from "./global-style";
 import { darkTheme, lightTheme, Theme } from "./theme";
-import Main from "./Components/Main";
-import Footer from "./Components/Footer";
+import Main from "./Components/Main/Main";
+import Footer from "./Components/Footer/Footer";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Data from "./Data/Data";
+import Data from "./Components/Data/Data";
+import Contribute from "./Components/Contribute/Contribute";
 
 export interface CurrentThemeProps {
     currentTheme: Theme;
@@ -38,6 +39,7 @@ export default function App() {
                     <Routes>
                         <Route path="/" element={<Main />} />
                         <Route path="/data" element={<Data />} />
+                        <Route path="/contribute" element={<Contribute />} />
                     </Routes>
                     <Footer />
                 </ThemeContext.Provider>
