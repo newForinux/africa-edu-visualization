@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react"
 import styled from "styled-components"
-import { CurrentThemeProps, ThemeContext } from "../App"
-import { darkTheme, lightTheme, Theme } from "../theme";
-import Logo from "./Logo";
+import { CurrentThemeProps, ThemeContext } from "../../App"
+import { darkTheme, lightTheme, Theme } from "../../theme";
+import Logo from "../Logo";
 
 
 interface NavProps {

@@ -1,10 +1,10 @@
 import React, { useState, useMemo, useContext } from "react";
 import ReactMapGL, { InteractiveMapProps, Layer, LinearInterpolator, MapEvent, Source, WebMercatorViewport } from "react-map-gl";
-import { CurrentThemeProps, ThemeContext } from "../App";
-import { lightTheme } from "../theme";
+import { CurrentThemeProps, ThemeContext } from "../../App";
+import { lightTheme, darkTheme } from "../../theme";
 import geojson from "./.data/africa.json";
 import { countriesLayerDark, countriesLayerLight, countryBaseLayer, highlightLayerDark, highlightLayerLight } from "./map-style";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { WebMercatorViewportOptions } from "@math.gl/web-mercator/src/web-mercator-viewport";
 import { bbox } from "turf";
 import mapboxgl from "mapbox-gl";
@@ -66,10 +66,11 @@ const DataContainer = styled.div`
 
 const DataMapContainer = styled.div`
     width: 100%;
-    height: 50rem;
+    height: 25rem;
 
     @media screen and (min-width: 80em) {
         width: 34rem;
+        height: 50rem;
     }
 
     @media screen and (min-width: 100em) {
@@ -92,6 +93,10 @@ const DataDetailContainer = styled.div`
 `
 
 const DataImageContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     @media screen and (min-width: 80em) {
         max-width: 38rem;
         height: 60%;
@@ -106,12 +111,9 @@ const CountryHeader = styled.h1`
     letter-spacing: -0.025rem;
     margin-bottom: 1rem;
 
-    @media screen and (min-width: 48em) {
-        font-size: 3.5rem;
-    }
 
     @media screen and (min-width: 62em) {
-        font-size: 4rem;
+        font-size: 3.5rem;
     }
 `
 
@@ -121,7 +123,6 @@ const CountryHeaderKr = styled.h3`
     font-weight: 600;
     font-family: 'OTWelcomeRA', system-ui, sans-serif;
     letter-spacing: 0.2rem;
-    margin-bottom: 2.5rem;
 
     @media screen and (min-width: 48em) {
         font-size: 2.0rem;
@@ -146,17 +147,15 @@ const CountryPreSolution = styled.p`
     @media screen and (min-width: 80em) {
         padding-top: 2rem;
     }
-
 `
 
-const CountrySolution = styled.p`
+const ResultAbstract = styled.p`
     font-size: 1.0rem;
     line-height: calc(1em + 0.25rem);
     font-weight: 500;
     font-family: 'OTWelcomeRA', system-ui, sans-serif;
-    letter-spacing: 0.2rem;
+    letter-spacing: 0.05rem;
     word-break: keep-all;
-
 
     @media screen and (min-width: 62em) {
         font-size: 1.25rem;
@@ -173,24 +172,128 @@ const CountrySolution = styled.p`
 
 const CountryIntroCaption = styled.figcaption<CurrentThemeProps>`
     font-family: 'OTWelcomeRA', system-ui, sans-serif;
-    margin-top: 1.25rem;
+    margin-top: 0.75rem;
     color: ${({ currentTheme }) => currentTheme === lightTheme ? '#96A0A6' : '#C8C8C8'};
-    max-width: 30rem;
     margin-left: auto;
     margin-right: auto;
     font-size: 1rem;
-    line-height:  calc(1em + 0.5rem);
+    line-height: calc(1em + 0.5rem);
+    word-break: keep-all;
+`
+
+const ResultCaption = styled.figcaption<CurrentThemeProps>`
+    font-family: 'OTWelcomeRA', system-ui, sans-serif;
+    margin-top: 0.75rem;
+    padding-bottom: 1rem;
+    color: ${({ currentTheme }) => currentTheme === lightTheme ? '#96A0A6' : '#C8C8C8'};
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1rem;
+    line-height: calc(1em + 0.5rem);
+`
+
+const rotate360 = keyframes`
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+`
+
+const Spinner = styled.div`
+    position: absolute;
+    animation: ${rotate360} 1s linear infinite;
+    transform: translateZ(0);
+    border-top: 2px solid grey;
+    border-right: 2px solid grey;
+    border-bottom: 2px solid grey;
+    border-left: 4px solid black;
+
+    background: transparent;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    z-index: 10000;
+`
+
+const RestContainer = styled.div`
+    width: 90%;
+    height: 100%;
+
+    @media screen and (min-width: 80em) {
+        max-width: 800px;
+    }
+`
+
+const Divider = styled.div`
+    width: 90%;
+    text-align: center;
+    padding-top: 2rem;
+    border-bottom: 1px solid #979faf;
+    line-height: 0.1em;
+
+    @media screen and (min-width: 80em) {
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+`
+
+const DividerSpan = styled.span<CurrentThemeProps>`
+    padding: 0 2rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    background: ${({ currentTheme }) => currentTheme === lightTheme ? lightTheme.body : darkTheme.body};
+    transition: background 0.25s ease;
+`
+
+const ResultImage = styled.img`
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1rem;
+`
+
+const ResultSolution = styled.p`
+    font-size: 1.5rem;
+    line-height: calc(1.5em + 0.25rem);
+    font-family: 'OTWelcomeRA', system-ui, sans-serif;
+    font-weight: 500;
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 0.5rem;
+    padding-bottom: 1.5rem;
+    letter-spacing: 0.05rem;
+    word-break: keep-all;
+`
+
+const ResultWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
 `
 
 export default function Data() {
     const { theme } = useContext(ThemeContext);
     const [countryName, setCountryName] = useState(null);
+    const [load, setLoad] = useState(false);
+    const [restLoad, setRestLoad] = useState(false);
 
     const [viewport, setViewport] = useState<InteractiveMapProps>({
         latitude: 1.188056,
         longitude: 20.4389,
         zoom: window.innerWidth <= 400 ? 1.6 : 2.5
     });
+
+
+    const handleLoad = () => {
+        setLoad(true);
+    }
+
+    const handleRestLoad = () => {
+        setRestLoad(true);
+    }
 
 
     const onClick = (event: MapEvent) => {
@@ -210,6 +313,8 @@ export default function Data() {
             );
 
             setCountryName(feature && feature.properties.name);
+            setLoad(false);
+            setRestLoad(false);
 
             setViewport({
                 ...viewport,
@@ -221,6 +326,7 @@ export default function Data() {
                 }),
                 transitionDuration: 600
             });
+
         }
     };
 
@@ -255,15 +361,15 @@ export default function Data() {
                 <CountryHeader>
                     {selectedCountry}
                 </CountryHeader>
-
                 {selectedCountry !== "Not Selected." && selectedData &&
                     <>
                         <CountryHeaderKr>
                             {selectedData.name_kr}
                         </CountryHeaderKr>
                         <DataImageContainer>
-                            <img alt="banner"
-                                title="banner"
+                            {!load && <Spinner />}
+                            <img alt="country_result"
+                                title="country_result"
                                 src={`./.result/${selectedData.main_img}`}
                                 style={{
                                     width: "100%",
@@ -276,20 +382,53 @@ export default function Data() {
                                     objectFit: "contain",
                                     objectPosition: "left"
                                 }}
+                                onLoad={handleLoad}
                             />
+
                         </DataImageContainer>
                         <CountryIntroCaption currentTheme={theme}>
                             {selectedData.main_intro}
                         </CountryIntroCaption>
                         <CountryPreSolution>
-                            솔루션:
+                            요약:
                         </CountryPreSolution>
-                        <CountrySolution>
+                        <ResultAbstract>
                             {selectedData.summary}
-                        </CountrySolution>
+                        </ResultAbstract>
                     </>
                 }
             </DataDetailContainer>
-        </DataContainer >
+            <Divider>
+                <DividerSpan currentTheme={theme}>
+                    RESULT
+                </DividerSpan>
+            </Divider>
+            <RestContainer>
+                {selectedCountry !== "Not Selected." && selectedData &&
+                    selectedData.other_img.map((element, index) => {
+                        return (
+                            <>
+                                {!restLoad && <Spinner />}
+                                <ResultImage src={`./.result/${element.img}`} alt={`c${index}`} onLoad={handleRestLoad} />
+                                <ResultCaption currentTheme={theme}>
+                                    {`그림 ${index + 1} : ${element.caption}`}
+                                </ResultCaption>
+                            </>
+                        )
+                    })
+                }
+
+                {selectedCountry !== "Not Selected." && selectedData && selectedData.solution !== "" &&
+                    <ResultWrapper>
+                        <CountryPreSolution>
+                            솔루션:
+                        </CountryPreSolution>
+                        <ResultSolution>
+                            {selectedData.solution}
+                        </ResultSolution>
+                    </ResultWrapper>
+                }
+            </RestContainer>
+        </DataContainer>
     );
 }

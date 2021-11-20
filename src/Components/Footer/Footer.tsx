@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import styled from "styled-components"
-import { CurrentThemeProps, ThemeContext } from "../App";
-import { darkTheme, lightTheme } from "../theme";
-import Logo from "./Logo";
+import { CurrentThemeProps, ThemeContext } from "../../App";
+import { darkTheme, lightTheme } from "../../theme";
+import Logo from "../Logo";
 
 
 const FooterContainer = styled.div`
@@ -195,13 +195,13 @@ export default function Footer() {
                         <FooterLink href="/">
                             Home
                         </FooterLink>
-                        <FooterLink href="/">
+                        <FooterLink href="/data">
                             Data
                         </FooterLink>
-                        <FooterLink href="/">
+                        <FooterLink href="/direction">
                             Direction
                         </FooterLink>
-                        <FooterLink href="/">
+                        <FooterLink href="/contribute">
                             Contribute
                         </FooterLink>
                     </FooterMenuWrapper>

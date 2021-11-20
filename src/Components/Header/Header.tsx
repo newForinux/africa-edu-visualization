@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import styled from "styled-components";
-import { CurrentThemeProps, ThemeContext } from "../App";
-import { lightTheme } from "../theme";
-import Logo from "./Logo";
-import NavBar from "./NavBar";
+import { CurrentThemeProps, ThemeContext } from "../../App";
+import { lightTheme } from "../../theme";
+import Logo from "../Logo";
+import NavBar from "../Nav/NavBar";
 
 const Container = styled.div`
     display: grid;

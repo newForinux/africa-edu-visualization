@@ -1,9 +1,8 @@
 import { useContext } from "react";
 import styled from "styled-components"
-import { CurrentThemeProps, ThemeContext } from "../App";
-import sampleImg from "../images/sample.jpg";
-import { lightTheme } from "../theme";
-import FadeIn from "./FadeIn";
+import { CurrentThemeProps, ThemeContext } from "../../App";
+import { lightTheme } from "../../theme";
+import FadeIn from "../FadeIn";
 import "./Main.scss";
 
 
@@ -109,10 +108,10 @@ export default function Main() {
                                         marginRight: "auto",
                                         maxWidth: "800px",
                                     }}>
-                                    <a className="md-figure-link" href={sampleImg} rel="noopener" style={{ display: "block" }}>
+                                    <a className="md-figure-link" href="./.result/overview.png" rel="noopener" style={{ display: "block" }}>
                                         <img alt="banner"
                                             title="banner"
-                                            src={sampleImg}
+                                            src="./.result/overview.png"
                                             style={{
                                                 width: "100%",
                                                 height: "100%",

@@ -18,9 +18,6 @@ export interface CountryDataProps {
 function Pin(props: CountryDataProps) {
     const { data } = props;
 
-    console.log(data);
-    console.log("yta");
-
     const PinElements = data.map((country, index) => (
         <Marker key={`marker-${index}`} longitude={country.longitude} latitude={country.latitude}>
             <svg
